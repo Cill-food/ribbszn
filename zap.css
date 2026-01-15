@@ -1,0 +1,509 @@
+:root {
+  --amarelo: #ffd500;
+  --fundo: #121212;
+  --preto-card: #1e1e1e;
+  --texto: #f0f0f0;
+  --verde-zap: #25d366;
+  --vermelho: #ff4444;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: var(--fundo);
+  background-image: url("./img/fundo.png");
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--texto);
+}
+
+header {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid var(--amarelo);
+  text-align: center;
+}
+
+.logo-text {
+  font-size: 1.4em;
+  font-weight: 900;
+  color: var(--amarelo);
+}
+
+/* --- Categorias --- */
+.sessao-topo {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  overflow-x: auto;
+  background: rgba(0, 0, 0, 0.5);
+  scrollbar-width: none;
+}
+
+.sessao-topo::-webkit-scrollbar {
+  display: none;
+}
+
+.sessao-topo button {
+  background: #333;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px 20px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.sessao-topo button.active {
+  background: var(--amarelo);
+  color: #000;
+}
+
+/* --- Cards do Cardápio --- */
+.cardapio {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 15px;
+  padding: 15px;
+}
+
+.card {
+  background: var(--preto-card);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.card img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card h3 {
+  font-size: 1.1em;
+  color: var(--amarelo);
+  margin: 10px 0 5px 0;
+}
+
+.descricao {
+  font-size: 0.85em;
+  color: #bbb;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.options-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.btn-add,
+.btn-personalizar {
+  background: var(--amarelo);
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+}
+
+/* --- Carrinho Modernizado (Estilo Inferior) --- */
+#footerCart {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  border-top: 3px solid var(--amarelo);
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+  transform: translateY(calc(100% - 60px));
+}
+
+#footerCart.open {
+  transform: translateY(0);
+}
+
+.cart-header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  min-height: 60px;
+  box-sizing: border-box;
+}
+
+.cart-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#cartCount {
+  background: var(--amarelo);
+  color: #000;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.85em;
+}
+
+#cartTotalDisplay {
+  font-size: 1.2em;
+  font-weight: 800;
+  color: var(--amarelo);
+}
+
+#cartItemsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+#cartItems {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 0 20px;
+  max-height: 50vh;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #333;
+}
+
+.cart-item strong {
+  display: block;
+  font-size: 1em;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.cart-item small {
+  color: #aaa;
+  font-size: 0.8em;
+  line-height: 1.4;
+}
+
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #2a2a2a;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.cart-controls button {
+  background: none;
+  border: none;
+  color: var(--amarelo);
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.cart-controls span {
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+}
+
+.cart-actions {
+  padding: 20px;
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#btnFinalizar {
+  background: var(--verde-zap);
+  color: #000;
+  border: none;
+  padding: 8px;
+  width: 100%;
+  border-radius: 12px;
+  font-size: 1.1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#btnLimpar {
+  background: transparent;
+  color: var(--vermelho);
+  border: 1px solid var(--vermelho);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+/* --- Modais e Popups --- */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: #2c2c2c;
+  width: 95%;
+  max-width: 390px;
+  padding: 20px;
+  border-radius: 15px;
+  z-index: 1100;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
+  border: 1px solid rgba(255, 213, 0, 0.2);
+}
+
+.popup.show {
+  display: block;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 950;
+  transition: all 0.3s ease;
+}
+
+.backdrop.show {
+  display: block;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* --- Estilização dos Modais de Checkout (Novo) --- */
+#modalModoEntrega h3,
+#modalDados h3 {
+  color: var(--amarelo);
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+#modalDados form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#modalDados input,
+#modalDados select {
+  background: #1e1e1e;
+  border: 1px solid #444;
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#modalDados input:focus,
+#modalDados select:focus {
+  border-color: var(--amarelo);
+}
+
+.resumo-final {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  margin: 10px 0;
+  border: 1px dashed #444;
+}
+
+.resumo-final p {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.total-big {
+  font-size: 1.2em !important;
+  font-weight: bold;
+  color: var(--amarelo);
+  border-top: 1px solid #444;
+  padding-top: 10px;
+  margin-top: 10px !important;
+}
+
+.btn-whatsapp {
+  background: var(--verde-zap);
+  color: #000;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.btn-whatsapp:active {
+  transform: scale(0.98);
+  filter: brightness(0.9);
+}
+
+.btn-close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* --- Estilos Internos do Modal (Personalização) --- */
+#popupQuestion h4 {
+  color: var(--amarelo);
+  border-bottom: 1px solid #444;
+  margin: 20px 0 10px;
+  font-size: 0.9em;
+}
+
+#popupQuestion label {
+  display: flex;
+  align-items: center;
+  background: #3d3d3d;
+  padding: 14px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#popupQuestion input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  margin-right: 12px;
+  accent-color: var(--amarelo);
+}
+
+.btn-primary {
+  width: 100%;
+  background: white;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+}
+
+/* --- Upsell --- */
+#upsellContainer {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid #333;
+}
+
+.upsell-header {
+  font-size: 0.8em;
+  color: var(--amarelo);
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.upsell-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
+
+.upsell-card {
+  min-width: 100px;
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #444;
+}
+
+.upsell-card img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+
+.upsell-card h4 {
+  font-size: 0.7em;
+  margin: 4px 0;
+  height: 2.4em;
+  overflow: hidden;
+}
+
+.upsell-card .price {
+  font-size: 0.8em;
+  color: var(--amarelo);
+  font-weight: bold;
+}
+
+.upsell-card button {
+  width: 100%;
+  background: var(--amarelo);
+  border: none;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 0.7em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Espaçamento e Responsividade */
+main,
+.cardapio {
+  padding-bottom: 80px !important;
+}
+
+@media (min-width: 768px) {
+  #footerCart.open {
+    bottom: 20px;
+    right: 20px;
+    left: auto;
+    width: 350px;
+  }
+}
